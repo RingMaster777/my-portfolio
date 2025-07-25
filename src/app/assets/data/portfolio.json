@@ -1,0 +1,28 @@
+{
+  "personal": {
+    "name": "John Doe",
+    "title": "Full Stack Developer",
+    "email": "john@example.com",
+    "phone": "+1 (234) 567-8900",
+    "location": "San Francisco, CA",
+    "website": "https://johndoe.dev",
+    "bio": "Passionate full-stack developer with 5+ years of experience creating beautiful, functional, and user-centered digital experiences."
+  },
+  "social": [
+    {
+      "platform": "GitHub",
+      "url": "https://github.com/johndoe",
+      "icon": "fab fa-github"
+    },
+    {
+      "platform": "LinkedIn",
+      "url": "https://linkedin.com/in/johndoe",
+      "icon": "fab fa-linkedin"
+    },
+    {
+      "platform": "Twitter",
+      "url": "https://twitter.com/johndoe",
+      "icon": "fab fa-twitter"
+    }
+  ]
+}

@@ -1,0 +1,76 @@
+<div
+  class="group relative bg-white dark:bg-gray-800 rounded-xl overflow-hidden shadow-lg hover:shadow-2xl transition-all duration-300 transform hover:-translate-y-2"
+>
+  <!-- Image -->
+  <div class="relative h-48 overflow-hidden">
+    <img
+      [src]="project.image"
+      [alt]="project.title"
+      class="w-full h-full object-cover transition-transform duration-300 group-hover:scale-110"
+    />
+    <div
+      class="absolute inset-0 bg-gradient-to-t from-black/50 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300"
+    ></div>
+
+    <!-- Featured Badge -->
+    <div *ngIf="project.featured" class="absolute top-4 left-4">
+      <span
+        class="px-3 py-1 bg-primary-600 text-white text-xs font-medium rounded-full"
+      >
+        Featured
+      </span>
+    </div>
+  </div>
+
+  <!-- Content -->
+  <div class="p-6">
+    <h3
+      class="text-xl font-bold text-gray-900 dark:text-white mb-2 group-hover:text-primary-600 transition-colors"
+    >
+      {{ project.title }}
+    </h3>
+
+    <p class="text-gray-600 dark:text-gray-300 text-sm mb-4 line-clamp-2">
+      {{ project.description }}
+    </p>
+
+    <!-- Technologies -->
+    <div class="flex flex-wrap gap-2 mb-4">
+      <span
+        *ngFor="let tech of project.technologies.slice(0, 3)"
+        class="px-2 py-1 bg-gray-100 dark:bg-gray-700 text-gray-700 dark:text-gray-300 text-xs rounded-md"
+      >
+        {{ tech }}
+      </span>
+      <span
+        *ngIf="project.technologies.length > 3"
+        class="px-2 py-1 bg-gray-100 dark:bg-gray-700 text-gray-500 dark:text-gray-400 text-xs rounded-md"
+      >
+        +{{ project.technologies.length - 3 }}
+      </span>
+    </div>
+
+    <!-- Actions -->
+    <div class="flex gap-3">
+      <app-button
+        *ngIf="project.liveUrl"
+        variant="primary"
+        size="sm"
+        icon="fas fa-external-link-alt"
+        (clicked)="openLink(project.liveUrl!)"
+      >
+        Live Demo
+      </app-button>
+
+      <app-button
+        *ngIf="project.githubUrl"
+        variant="outline"
+        size="sm"
+        icon="fab fa-github"
+        (clicked)="openLink(project.githubUrl!)"
+      >
+        Code
+      </app-button>
+    </div>
+  </div>
+</div>

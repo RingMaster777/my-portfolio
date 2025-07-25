@@ -1,0 +1,86 @@
+<nav
+  class="fixed top-0 left-0 right-0 z-50 glass backdrop-blur-md border-b border-white/10"
+>
+  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+    <div class="flex items-center justify-between h-16">
+      <!-- Logo -->
+      <div class="flex-shrink-0">
+        <a routerLink="/home" class="flex items-center">
+          <div
+            class="w-10 h-10 bg-gradient-to-r from-primary-600 to-primary-700 rounded-full flex items-center justify-center"
+          >
+            <span class="text-white font-bold text-lg">JD</span>
+          </div>
+          <span
+            class="ml-3 text-xl font-bold text-gray-900 dark:text-white hidden sm:block"
+          >
+            John Doe
+          </span>
+        </a>
+      </div>
+
+      <!-- Desktop Navigation -->
+      <div class="hidden md:block">
+        <div class="ml-10 flex items-baseline space-x-4">
+          <a
+            *ngFor="let item of navItems"
+            [routerLink]="item.path"
+            routerLinkActive="nav-active"
+            class="nav-link px-3 py-2 rounded-md text-sm font-medium transition-all duration-200"
+          >
+            <i [class]="item.icon + ' mr-2'"></i>
+            {{ item.label }}
+          </a>
+        </div>
+      </div>
+
+      <!-- Theme Toggle & Mobile Menu Button -->
+      <div class="flex items-center space-x-4">
+        <!-- Theme Toggle -->
+        <button
+          (click)="toggleTheme()"
+          class="p-2 rounded-md text-gray-600 dark:text-gray-300 hover:text-gray-900 dark:hover:text-white transition-colors"
+          [attr.aria-label]="
+            themeService.isDarkMode()
+              ? 'Switch to light mode'
+              : 'Switch to dark mode'
+          "
+        >
+          <i
+            [class]="themeService.isDarkMode() ? 'fas fa-sun' : 'fas fa-moon'"
+          ></i>
+        </button>
+
+        <!-- Mobile menu button -->
+        <button
+          (click)="toggleMobileMenu()"
+          class="md:hidden p-2 rounded-md text-gray-600 dark:text-gray-300 hover:text-gray-900 dark:hover:text-white transition-colors"
+          aria-label="Toggle mobile menu"
+        >
+          <i [class]="mobileMenuOpen ? 'fas fa-times' : 'fas fa-bars'"></i>
+        </button>
+      </div>
+    </div>
+
+    <!-- Mobile Navigation -->
+    <div class="md:hidden" [class.hidden]="!mobileMenuOpen">
+      <div
+        class="px-2 pt-2 pb-3 space-y-1 bg-white/90 dark:bg-gray-800/90 backdrop-blur-md rounded-lg mt-2"
+      >
+        <a
+          *ngFor="let item of navItems"
+          [routerLink]="item.path"
+          routerLinkActive="nav-active-mobile"
+          class="nav-link-mobile block px-3 py-2 rounded-md text-base font-medium transition-all duration-200"
+          (click)="closeMobileMenu()"
+        >
+          <i [class]="item.icon + ' mr-3'"></i>
+          {{ item.label }}
+        </a>
+      </div>
+    </div>
+  </div>
+</nav>
+
+<!-- Spacer to prevent content from hiding behind fixed navbar -->
+<div class="h-16"></div>

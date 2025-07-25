@@ -1,0 +1,25 @@
+<div class="skill-item mb-6">
+  <div class="flex items-center justify-between mb-2">
+    <div class="flex items-center">
+      <i
+        *ngIf="skill.icon"
+        [class]="skill.icon + ' text-primary-600 mr-3 text-lg'"
+      ></i>
+      <span class="text-gray-900 dark:text-white font-medium">{{
+        skill.name
+      }}</span>
+    </div>
+    <span class="text-sm text-gray-600 dark:text-gray-400"
+      >{{ animatedLevel }}%</span
+    >
+  </div>
+
+  <div
+    class="w-full bg-gray-200 dark:bg-gray-700 rounded-full h-2 overflow-hidden"
+  >
+    <div
+      class="bg-gradient-to-r from-primary-500 to-primary-600 h-2 rounded-full transition-all duration-1000 ease-out"
+      [style.width.%]="animatedLevel"
+    ></div>
+  </div>
+</div>

@@ -1,0 +1,45 @@
+@use "./styles/variables";
+@use "./styles/mixins";
+@use "./styles/animations";
+@use "./styles/globals";
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  font-family: "Inter", -apple-system, BlinkMacSystemFont, "Segoe UI", "Roboto",
+    sans-serif;
+  line-height: 1.6;
+  transition: all 0.3s ease;
+}
+
+/* Glass morphism utility classes */
+.glass {
+  @apply backdrop-blur-md bg-white/10 border border-white/20;
+}
+
+.dark .glass {
+  @apply bg-black/10 border-white/10;
+}
+
+/* Neumorphism utility classes */
+.neuro {
+  box-shadow: 8px 8px 16px rgba(0, 0, 0, 0.2),
+    -8px -8px 16px rgba(255, 255, 255, 0.1);
+}
+
+.dark .neuro {
+  box-shadow: 8px 8px 16px rgba(0, 0, 0, 0.4),
+    -8px -8px 16px rgba(255, 255, 255, 0.05);
+}

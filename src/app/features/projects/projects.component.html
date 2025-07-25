@@ -1,0 +1,138 @@
+<!-- Hero Section -->
+<section
+  class="pt-20 pb-16 bg-gradient-to-br from-primary-50 to-purple-50 dark:from-gray-900 dark:to-purple-900"
+>
+  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+    <div class="text-center mb-16">
+      <h1
+        class="text-4xl md:text-5xl font-bold text-gray-900 dark:text-white mb-6"
+      >
+        My <span class="text-primary-600">Projects</span>
+      </h1>
+      <p class="text-xl text-gray-600 dark:text-gray-300 max-w-3xl mx-auto">
+        A showcase of my work, featuring web applications, mobile apps, and
+        creative solutions
+      </p>
+    </div>
+  </div>
+</section>
+
+<!-- Filter & Search Section -->
+<section
+  class="py-8 bg-white dark:bg-gray-900 sticky top-16 z-40 border-b border-gray-200 dark:border-gray-700"
+>
+  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+    <div class="flex flex-col md:flex-row justify-between items-center gap-6">
+      <!-- Search -->
+      <div class="relative flex-1 max-w-md">
+        <i
+          class="fas fa-search absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-400"
+        ></i>
+        <input
+          type="text"
+          [(ngModel)]="searchTerm"
+          (input)="filterProjects()"
+          placeholder="Search projects..."
+          class="w-full pl-10 pr-4 py-2 border border-gray-300 dark:border-gray-600 rounded-lg focus:ring-2 focus:ring-primary-500 focus:border-transparent bg-white dark:bg-gray-800 text-gray-900 dark:text-white"
+        />
+      </div>
+
+      <!-- Category Filter -->
+      <div class="flex flex-wrap gap-2">
+        <button
+          *ngFor="let category of categories"
+          (click)="setActiveCategory(category)"
+          [class]="getCategoryButtonClass(category)"
+        >
+          {{ category | titlecase }}
+        </button>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Projects Grid -->
+<section class="py-16 bg-gray-50 dark:bg-gray-800">
+  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+    <!-- Results Info -->
+    <div class="mb-8">
+      <p class="text-gray-600 dark:text-gray-300">
+        Showing {{ filteredProjects.length }} of
+        {{ allProjects.length }} projects
+        <span *ngIf="activeCategory !== 'all'"> in {{ activeCategory }}</span>
+        <span *ngIf="searchTerm"> matching "{{ searchTerm }}"</span>
+      </p>
+    </div>
+
+    <!-- Projects Grid -->
+    <div
+      class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8"
+      *ngIf="filteredProjects.length > 0"
+    >
+      <app-project-card
+        *ngFor="let project of filteredProjects; trackBy: trackByProjectId"
+        [project]="project"
+        class="animate-fade-in"
+      ></app-project-card>
+    </div>
+
+    <!-- No Results -->
+    <div *ngIf="filteredProjects.length === 0" class="text-center py-16">
+      <i
+        class="fas fa-search text-6xl text-gray-300 dark:text-gray-600 mb-4"
+      ></i>
+      <h3 class="text-xl font-semibold text-gray-900 dark:text-white mb-2">
+        No projects found
+      </h3>
+      <p class="text-gray-600 dark:text-gray-300 mb-6">
+        Try adjusting your search or filter criteria
+      </p>
+      <app-button variant="outline" (clicked)="clearFilters()">
+        Clear Filters
+      </app-button>
+    </div>
+
+    <!-- Load More Button -->
+    <div class="text-center mt-12" *ngIf="hasMoreProjects">
+      <app-button
+        variant="outline"
+        size="lg"
+        [loading]="loadingMore"
+        (clicked)="loadMoreProjects()"
+      >
+        Load More Projects
+      </app-button>
+    </div>
+  </div>
+</section>
+
+<!-- CTA Section -->
+<section class="py-16 bg-primary-600">
+  <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+    <h2 class="text-3xl font-bold text-white mb-4">Have a Project in Mind?</h2>
+    <p class="text-xl text-primary-100 mb-8">
+      I'm always excited to work on new challenges and bring creative ideas to
+      life
+    </p>
+
+    <div class="flex flex-col sm:flex-row gap-4 justify-center">
+      <app-button
+        variant="outline"
+        size="lg"
+        class="border-white text-white hover:bg-white hover:text-primary-600"
+        (clicked)="navigateToContact()"
+      >
+        Let's Discuss
+      </app-button>
+
+      <app-button
+        variant="ghost"
+        size="lg"
+        class="text-white hover:bg-white/10"
+        (clicked)="viewResume()"
+      >
+        View Resume
+      </app-button>
+    </div>
+  </div>
+</section>

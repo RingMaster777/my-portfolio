@@ -1,0 +1,94 @@
+@use "./variables" as *;
+
+// Flexbox utilities
+@mixin flex-center {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+@mixin flex-between {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+// Glass morphism effect
+@mixin glass-morphism($blur: 16px, $opacity: 0.1) {
+  backdrop-filter: blur($blur);
+  background: rgba(255, 255, 255, $opacity);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+
+  .dark & {
+    background: rgba(0, 0, 0, $opacity);
+    border-color: rgba(255, 255, 255, 0.1);
+  }
+}
+
+// Neumorphism effect
+@mixin neumorphism($inset: false) {
+  @if $inset {
+    box-shadow: inset 8px 8px 16px rgba(0, 0, 0, 0.1),
+      inset -8px -8px 16px rgba(255, 255, 255, 0.7);
+
+    .dark & {
+      box-shadow: inset 8px 8px 16px rgba(0, 0, 0, 0.3),
+        inset -8px -8px 16px rgba(255, 255, 255, 0.03);
+    }
+  } @else {
+    box-shadow: 8px 8px 16px rgba(0, 0, 0, 0.1),
+      -8px -8px 16px rgba(255, 255, 255, 0.7);
+
+    .dark & {
+      box-shadow: 8px 8px 16px rgba(0, 0, 0, 0.3),
+        -8px -8px 16px rgba(255, 255, 255, 0.03);
+    }
+  }
+}
+
+// Responsive breakpoints
+@mixin respond-to($breakpoint) {
+  @if $breakpoint == sm {
+    @media (min-width: $breakpoint-sm) {
+      @content;
+    }
+  }
+  @if $breakpoint == md {
+    @media (min-width: $breakpoint-md) {
+      @content;
+    }
+  }
+  @if $breakpoint == lg {
+    @media (min-width: $breakpoint-lg) {
+      @content;
+    }
+  }
+  @if $breakpoint == xl {
+    @media (min-width: $breakpoint-xl) {
+      @content;
+    }
+  }
+  @if $breakpoint == 2xl {
+    @media (min-width: $breakpoint-2xl) {
+      @content;
+    }
+  }
+}
+
+// Animation utilities
+@mixin fade-in($duration: 0.3s, $delay: 0s) {
+  opacity: 0;
+  animation: fadeIn $duration ease-in-out $delay forwards;
+}
+
+@mixin slide-up($duration: 0.5s, $delay: 0s, $distance: 30px) {
+  opacity: 0;
+  transform: translateY($distance);
+  animation: slideUp $duration ease-out $delay forwards;
+}
+
+@mixin scale-in($duration: 0.3s, $delay: 0s) {
+  opacity: 0;
+  transform: scale(0.9);
+  animation: scaleIn $duration ease-out $delay forwards;
+}

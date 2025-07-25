@@ -1,0 +1,10 @@
+<button
+  [class]="buttonClasses"
+  [disabled]="disabled || loading"
+  (click)="handleClick()"
+  [type]="type"
+>
+  <i *ngIf="loading" class="fas fa-spinner fa-spin mr-2"></i>
+  <i *ngIf="icon && !loading" [class]="icon + ' mr-2'"></i>
+  <ng-content></ng-content>
+</button>
