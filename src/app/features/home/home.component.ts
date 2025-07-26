@@ -98,7 +98,7 @@ export class HomeComponent implements OnInit, OnDestroy {
       keywords:
         'full stack developer, angular developer, react developer, web development, ui ux design, frontend developer, backend developer',
       author: 'John Doe',
-      image: '/assets/images/profile.jpg',
+      image: '"../../../../assets/images/profile.jpg"',
     });
   }
 
